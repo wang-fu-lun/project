@@ -89,7 +89,7 @@
 }
 
 .headeruserface {
-    background-image: url('Resources/images/logo.png');
+    background-image: url('../Resources/images/logo.png');
     width: 40px;
     height: 40px;
     background-color: white;

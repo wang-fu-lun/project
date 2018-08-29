@@ -1,68 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon">
 
-	<head>
-		<meta charset="utf-8" />
-		<title>首页</title>
-		<link href="css/Site.css" rel="stylesheet" type="text/css" />
-		<link href="css/zy.layout.css" rel="stylesheet" />
-		<link href="css/zy.form.css" rel="stylesheet" />
-		<link href="css/font-awesome.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/index.css" />
-		<link href="css/zy.menu.css" rel="stylesheet" />
-	</head>
+    <title>Signin Template for Bootstrap</title>
 
-	<body>
-		<div class="dvheader">
-			<div class="dvheadertools">
-				<span class="headerspantitle">进销存管理系统</span>
-				<ul class="headerultools">
-					<li class="headerlitools_info headerlitools" style="background-color: #075597">
-						<div class="headeruserface" style="text-align: center;"><i class="icon-user" style="color: black;font-size: 19px;"></i></div>
-						管理员<i style="margin-left: 8px;" class="icon-caret-down"></i>
-						<ul class="headerlitools_ulinfo">
-							<li style="border-top: 1px solid #E4ECF3;">
-								<i class="icon-off" style="margin:0 10px;"></i>
-								<a style="color: black; text-decoration: none;">退出</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="dvcontent">
-			<ul class="ulleftmenu" style="border-right: 1px solid #ddd;">
-				<li class="limenuitem">
-					<i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
-					<ul class="ulleftsubitems">
-						<a href="/html/type.html" target="right">
-							<li>分类管理</li>
-						</a>
-						<a href="/html/inventory.html" target="right">
-							<li>库存管理</li>
-						</a>
-						<a href="/html/inbound.html" target="right">
-							<li>入库管理</li>
-						</a>
-						<a href="/html/warning.html" target="right">
-							<li>预警信息设置</li>
-						</a>
-						<a href="/html/outBoud.html" target="right">
-							<li>出库管理</li>
-						</a>
-						<a href="/html/user.html" target="right">
-							<li>用户管理</li>
-						</a>
-						<a href="/html/updatePwd.html" target="right"><li >修改密码</li></a>
-					</ul>
-				</li>
-			</ul>
-			<div style="position: absolute; left: 191px; right: 20px; ">
-				<iframe src="/html/type.html" scrolling="no"  width="100%" height="1200" name="right" border="none"></iframe>
-			</div>
-		</div>
-		<script src="lib/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-		<script src="lib/js/plugs/Jqueryplugs.js" type="text/javascript"></script>
-		<script src="lib/js/_layout.js"></script>
-	</body>
+    <!-- Bootstrap core CSS -->
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./lib/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./lib/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">进销存管理系统</h2>
+        <p for="inputEmail" class="sr-only">用户名：</p>
+        <input type="email" id="inputEmail" class="form-control" placeholder="请输入用户名" required autofocus>
+        <p for="inputPassword" class="sr-only">密码：</p>
+        <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> 记住密码
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+    </div>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./lib/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
 </html>
