@@ -3,10 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+var session=require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const mainRouter = require('./routes/public');
+var captchaRouter = require('./routes/captcha');
 
 const app = express();
 
@@ -17,12 +19,22 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('xm'));
+//session配置
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'xm',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge:45*60*1000 }
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/public', mainRouter);
+app.use('/captcha', captchaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
