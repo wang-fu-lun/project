@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-1.7.2.min.js" />
+﻿/// <reference path="./jquery-1.7.2.min.js" />
 var Config = {
     "setting":
     {
@@ -46,21 +46,21 @@ var Config = {
 $(function () {
     Config.init();
     /*左侧菜单动画*/
-//  $(".limenuitem").click(function () {
-//      if ($(this).children(".ulleftsubitems").css("display") == "none") {
-//          $(".ulleftsubitems").stop().animate({ "height": "hide" });
-//          $(".limenuitem").css("background-Color", "#F5F5F5");
-//          $(".limenuitem").css("border-left", "3px solid #F5F5F5");
-//          $(this).css("background-Color", "white");
-//          $(this).css("border-left", "3px solid #2B7DBC");
-//          $(this).children(".ulleftsubitems").stop().animate({ "height": "show" });
-//      }
-//      else {
-//          $(".ulleftsubitems").stop().animate({ "height": "hide" });
-//          $(".limenuitem").css("background-Color", "#F5F5F5");
-//          $(".limenuitem").css("border-left", "3px solid #F5F5F5");
-//      }
-//  });
+ $(".limenuitem").click(function () {
+     if ($(this).children(".ulleftsubitems").css("display") == "none") {
+         $(".ulleftsubitems").stop().animate({ "height": "hide" });
+         $(".limenuitem").css("background-Color", "#F5F5F5");
+         $(".limenuitem").css("border-left", "3px solid #F5F5F5");
+         $(this).css("background-Color", "white");
+         $(this).css("border-left", "3px solid #2B7DBC");
+         $(this).children(".ulleftsubitems").stop().animate({ "height": "show" });
+     }
+     else {
+         $(".ulleftsubitems").stop().animate({ "height": "hide" });
+         $(".limenuitem").css("background-Color", "#F5F5F5");
+         $(".limenuitem").css("border-left", "3px solid #F5F5F5");
+     }
+ });
     $(".ulleftsubitems").bind("click", function (event) {
         event.stopPropagation();
     });
