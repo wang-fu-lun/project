@@ -29,7 +29,7 @@ const PositionService = {
 					.findByPage(page)
 					.then(pageData=>{
 						// 总页数
-						const totalPages = Math.ceil(data / 20);
+						const totalPages = Math.ceil(data / 15);
 						res.json({res_code:1, res_error:"", res_body: {data: pageData, count: data, totalPages}});
 					}).catch(err=>{
 						res.json({res_code:-1, res_error:err, res_body: {}});
