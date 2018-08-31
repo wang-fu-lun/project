@@ -1,13 +1,11 @@
-<<<<<<< HEAD
-=======
+
 /**
  * 头部对象构造函数
  */
 function Header() {
 	this.createDom();
-	this.createModal();
 	this.addListener();
-	this.load();
+	//this.load();
 }
 
 // 头部导航模板字符串
@@ -15,15 +13,21 @@ Header.template = `<div class="dvheader">
 <div class="dvheadertools">
 	<span class="headerspantitle">进销存管理系统</span>
 	<ul class="headerultools">
+	
 		<li class="headerlitools_info headerlitools" style="background-color: #075597">
-			欢迎您，<span>xxx</span><i style="margin-left: 8px;" class="icon-caret-down"></i>
+		欢迎您，<span>xxx</span>
+		
+		<i style="margin-left: 8px;" class="icon-caret-down"></i>
+		
 			<ul class="headerlitools_ulinfo">
 				<li style="border-top: 1px solid #E4ECF3;">
 					<i class="icon-off" style="margin:0 10px;"></i>
 					<a style="color: black; text-decoration: none;">退出</a>
 				</li>
 			</ul>
+			
 		</li>
+		
 	</ul>
 </div>
 </div>
@@ -67,47 +71,48 @@ $.extend(Header.prototype, {
 	createDom() {
 		$(Header.template).appendTo("header");
 	},
-	// 创建模态框
-	createModal() {
-		new LoginModal();
-		new RegisterModal();
-	},
+	// 点击显示注销
+	
+	
 	// 页面加载处理
-	load() {
-		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
-		let user = sessionStorage.loginUser;
-		if (user) {
-			user = JSON.parse(user);
-			$(".login-success")
-				.removeClass("hide")
-				.find("a:first").text(`你好：${user.username}`);
-			$(".not-login").remove();
-		}
-	},
+// 	load() {
+// 		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
+// 		let user = sessionStorage.loginUser;
+// 		if (user) {
+// 			user = JSON.parse(user);
+// 			$(".login-success")
+// 				.removeClass("hide")
+// 				.find("a:first").text(`你好：${user.username}`);
+// 			$(".not-login").remove();
+// 		}
+// 	},
 	// 注册事件监听
 	addListener() {
-		// 点击登录、注册链接
-		$(".link-login,.link-register").on("click", this.genCaptchaHandler)
+		//点击链接
+		$(".headerultools").on("click",this.showlogoout)
 		// 点击注销链接
-		$(".link-logout").on("click", this.logoutHandler);
+		//$(".link-logout").on("click", this.logoutHandler);
+		
 	},
-	// 生成验证码
-	genCaptchaHandler() {
-		$.get("/captcha/gencode", (data)=>{
-			$(".code-img").html(data);
-		}, "text");
+	
+	//显示注销
+	showlogoout(){
+		$(".headerlitools_ulinfo").css("display","block");
 	},
+	
+	
+	
 	// 注销
-	logoutHandler() {
-		$.getJSON("/users/logout", (data)=>{
-			if (data.res_body.status) {
-				sessionStorage.removeItem("loginUser");
-				window.location.href = "/index.html";
-			}
-		})
-	}
+// 	logoutHandler() {
+// 		$.getJSON("/users/logout", (data)=>{
+// 			if (data.res_body.status) {
+// 				sessionStorage.removeItem("loginUser");
+// 				window.location.href = "/index.html";
+// 			}
+// 		})
+// 	}
 });
 
 // 创建头部对象实例
 new Header();
->>>>>>> a4e40314b5ad5caed28a06a789bfee748c22592a
+

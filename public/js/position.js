@@ -10,7 +10,7 @@ Position.listInfoTemplate = `
 		<tr>
 			<td><%= i+1 %></td>
 			<td><%= positions[i].name %></td>
-			<td></td>
+			
 			<td><%= positions[i].remark %></td>
 			<td class="edit"><button><i class="icon-edit bigger-120"></i>编辑</button></td>
 			<td class="delete"><button><i class="icon-trash bigger-120"></i>删除</button></td>
