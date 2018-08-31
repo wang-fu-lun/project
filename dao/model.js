@@ -9,4 +9,18 @@ const Position = mongoose.model("position", {
 	remark: String,
 });
 
-module.exports = {Position};
+//用户表模型
+const User=mongoose.model("user",{
+	email:{
+		type:String,
+		unique:true,
+	},
+	password:String,	
+});
+
+//库存模型
+const Inventory = mongoose.model("inventory",{
+
+});
+
+module.exports = {Position,User,Inventory};
