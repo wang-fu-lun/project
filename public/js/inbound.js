@@ -13,7 +13,7 @@ Inbound.listInfoTemplate = `
             <td><%= inbounds[i].list %></td>
             <td><%= inbounds[i].food %></td>
 			<td><%= inbounds[i].name %></td>
-			<td><%= inbounds[i].remark %></td>
+			<td><%= inbounds[i].time %></td>
 			<td class="edit"><button data-toggle="modal" data-target="#addPosModal"><i class="icon-edit bigger-120"></i>编辑</button></td>
 			<td class="delete"><button data-toggle="modal"  data-target="#addPosModal1"><i class="icon-trash bigger-120"></i>删除</button></td>
 		</tr>
@@ -27,11 +27,33 @@ Inbound.paginationTemplate = `
 $.extend(Inbound.prototype, {
 	// 注册事件监听 
 	addListener() {
-		$(".am-btn-success").on("click", this.addInboundHandler);
+		const nowDate=new Date();
+		const time=nowDate.getFullYear()+"-"+("0"+(nowDate.getMonth()+1)).slice(-2)+"-"+("0"+nowDate.getDate()).slice(-2);
+		console.log(time)
+		
+		$(".am-btn-success").on("click", function(){
+			let data=$(".am-form-horizontal").serialize();
+			data+="&time="+time;
+			console.log(data)
+			$.post("/positions/add",data,(data)=>{
+				
+			},"json");
+		});
 		// 翻页
 		$(".pagination").on("click", "li", this.loadByPage);
-
-		$(".am-btn-success .delete").on("click", this.deleteInboundHandler);
+		 //删除数据
+		 $("tbody").delegate(".delete","click",function(){
+			const that=this;
+			$(".modal").delegate(".btn-primary","click",function(){
+				const _id=$(that).parent().data("id");
+				$(that).parents("tr").remove();
+				$.getJSON("/positions/del?id="+_id,function(data){
+					if(data.res_code === 1){
+						location.reload();
+					}
+				})
+			})
+		})
 	},
 	// 页面加载
 	load() {

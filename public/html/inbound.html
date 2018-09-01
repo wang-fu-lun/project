@@ -36,7 +36,7 @@
 												<th>商品名称</th>
 												<th>商品分类</th>
 												<th>入库数量 </th>
-												<th>备注</th>
+												<th>入库时间</th>
 												<th>编辑</th>
 												<th>删除</th>
 											</tr>
@@ -65,19 +65,11 @@
 													<div class="am-u-sm-9">
 															<input type="text" id="name" required placeholder="商品" name="list">
 															<small>商品</small>
-														<!-- <select id="list" required name="list">
-															<option value="">请选择商品</option>
-															<option value="商品一">商品一</option>
-															<option value="商品二">商品二</option>
-															<option value="商品三">商品三</option>
-														</select><small>商品</small> -->
 													</div>
 												</div>
 												<div class="am-form-group">
 													<label for="user-email" class="am-u-sm-3 am-form-label">分类</label>
 													<div class="am-u-sm-9">
-															<!-- <input type="text" id="name" required placeholder="分类" name="food">
-															<small>分类</small> -->
 														<select id="food" required name="food">
 															<option value="">请选择分类</option>
 															<option value="肉类">肉类</option>
@@ -94,10 +86,10 @@
 													</div>
 												</div>
 												<div class="am-form-group">
-													<label for="user-intro" class="am-u-sm-3 am-form-label">备注</label>
+													<label for="user-intro" class="am-u-sm-3 am-form-label">入库时间</label>
 													<div class="am-u-sm-9">
-														<textarea class="" rows="5" id="user-intro" name="remark" placeholder="输入备注"></textarea>
-														<small>250字以内...</small>
+														<input type="text" id="name" required name="time">
+														<small>时间</small>
 													</div>
 												</div>
 												<div class="am-form-group">
@@ -143,8 +135,8 @@
 								<input type="text" class="form-control" name="name" id="addPositionName" placeholder="入库数量">
 							</div>
 							<div class="form-group">
-								<label for="addTip">备注</label>
-								<input type="text" class="form-control" name="tip" id="addTip" placeholder="备注">
+								<input class="" type="text" id="name" required>
+								<small>时间</small>
 							</div>
 						</form>
 						</div>

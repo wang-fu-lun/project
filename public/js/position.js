@@ -25,6 +25,7 @@ Position.paginationTemplate = `
 $.extend(Position.prototype, {
 	// 注册事件监听 
 	addListener() {
+		//添加数据
 		$(".am-btn-success").on("click", function(){
 			const data=$(".am-form-horizontal").serialize();
 			$.post("/positions/add",data,(data)=>{
@@ -35,12 +36,15 @@ $.extend(Position.prototype, {
 		$(".pagination").on("click", "li", this.loadByPage);
 		 //删除数据
 		$("tbody").delegate(".delete","click",function(){
-			const _id=$(this).parent().data("id");
-			$(this).parents("tr").remove();
-			$.getJSON("/positions/del?id="+_id,function(data){
-				if(data.res_code === 1){
-					location.reload();
-				}
+			const that=this;
+			$(".modal").delegate(".btn-primary","click",function(){
+				const _id=$(that).parent().data("id");
+				$(that).parents("tr").remove();
+				$.getJSON("/positions/del?id="+_id,function(data){
+					if(data.res_code === 1){
+						location.reload();
+					}
+				})
 			})
 		})
 	},
@@ -79,6 +83,7 @@ $.extend(Position.prototype, {
 		// }).done(function(){this.getOldInfo.call(this);}.bind(this));
 		}).done(this.updatePositionHandler);
 	},
+	//更新数据
 	updatePositionHandler(){
 			$(".edit").on("click",function(){
 				//获取旧数据
@@ -97,6 +102,5 @@ $.extend(Position.prototype, {
 				});
 			});
 		},
-
 	});
 new Position();

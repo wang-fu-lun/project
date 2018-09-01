@@ -23,9 +23,6 @@ const PositionDao = {
 	updateOne(oldInfo, newInfo) {
 		return Position.updateOne(oldInfo, {$set:newInfo});
 	},
-	find() {
-
-	},
 	delete(del) {
 		return new Position(del).remove();
 	}

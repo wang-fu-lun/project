@@ -32,7 +32,6 @@ const PositionService = {
 				res.json({res_code:-1, res_error:err, res_body:""})
 			});
 	},
-	// 分页查询数据
 	//编辑--update
 	update(req, res, next){
 		//从请求主体重结构文本数据
@@ -49,7 +48,7 @@ const PositionService = {
 				res.json({res_code:-1, res_error:err, res_body: {}})
 			})
 	},
-	// 分页查询职位
+	// 分页查询数据
 	listByPage(req, res, next) {
 		// 获取待查询的页码
 		let {page} = req.query;
