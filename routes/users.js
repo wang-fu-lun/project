@@ -28,5 +28,7 @@ router.get('/logout',UserService.logout);
 
 router.post('/updatepass',UserService.updata);
 
+router.get("/list", UserService.listByPage);
+
 router.post('/regeister',upload.single("logo"),UserService.regeister);
 module.exports = router;
