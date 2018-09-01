@@ -11,10 +11,7 @@ var session=require('express-session');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const captchaRouter = require('./routes/captcha');
-
 const positionsRouter = require('./routes/positions.js');
-const userManageRouter = require('./routes/userManage.js');
-
 const repertoryRouter = require('./routes/repertory.js');
 
 
@@ -55,9 +52,6 @@ app.use('/users', usersRouter);
 app.use('/captcha', captchaRouter);
 
 app.use('/positions', positionsRouter); // 访问type目录下资源
-app.use('/userManage', userManageRouter);
-
-
 app.use('/repertory', repertoryRouter);
 
 // catch 404 and forward to error handler
