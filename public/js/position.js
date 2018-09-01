@@ -8,7 +8,7 @@ $(function() {
 
 Position.listInfoTemplate = `
 	<% for (var i = 0; i < positions.length; i++) { %> 
-		<tr data-id="<%= positions[i]._id %>">
+		<tr class="baba" data-id="<%= positions[i]._id %>">
 			<td><%= i+1 %></td>
 			<td class="positionName"><%= positions[i].name %></td>
 			<td class = "positionRemark"><%= positions[i].remark %></td>
@@ -80,33 +80,30 @@ $.extend(Position.prototype, {
 		}).done(this.updatePositionHandler);
 	},
 	updatePositionHandler(){
-		$(".edit").on("click",function(){
+		$('#addPosModal').on('show.bs.modal', function(event){
+			const btnThis = $(event.relatedTarget);//触发事件的按钮
+			const modal = $(this);  //当前模态框
 			//获取旧数据
-			const id = $(this).parent().data('id'),
-				oldName = $(this).siblings(".positionName").text(),
-				oldRemark = $(this).siblings(".positionRemark").text();
+			const id = $(btnThis).parents(".baba").data('id'),
+				oldName = $(btnThis).parent().siblings(".positionName").text(),
+				oldRemark = $(btnThis).parent().siblings(".positionRemark").text();
 			//设置模态框原始数据
-			$("#addPositionName").attr("value", oldName);
-			$("#addRemark").attr("value", oldRemark);
-			//点击取消，将数据修改为原数据
-			$("#addPosModal .btn-cancel").on("click",function(){
-				console.log($(this).parent().prev().find(".addPositionName"))
-				$(this).parent().prev().find("#addPositionName").val(oldName);
-				$(this).parent().prev().find("#addRemark").val(oldRemark);
-			});
+			modal.find("#addPositionName").val(oldName);
+			modal.find("#addRemark").val(oldRemark);
+
 			//点击确定，修改数据
 			$("#addPosModal .btn-yes").on("click", function(){
 				//获取用户输入的更新值
 				const newInfo = $(".add-position-form").serialize();
 				//判断newInfo是否为空
 				if(newInfo.split("&")[0].split("=")[1]==="" || newInfo.split("&")[1].split("=")[1]===""){
-					alert("分类名称或备注不能为空！")
+					alert("分类名称或备注不能为空！");
 				}else{
 					//将oldname值与newInfo值伪造成一个search数据
 					const data = "id="+id+"&"+newInfo;
 					console.log(data)
-					$.post("/positions/update", data, (data)=>{
-						if(data.res_code === 1){
+					$.post("/positions/update", data, (res)=>{
+						if(res.res_code === 1){
 							location.reload();
 						}
 					},"json");
@@ -114,5 +111,38 @@ $.extend(Position.prototype, {
 			});
 		});
 	}
+	// 	$(".edit").on("click",function(){
+	// 		//获取旧数据
+	// 		console.log("ff")
+	// 		const id = $(this).parent().data('id'),
+	// 			oldName = $(this).siblings(".positionName").text(),
+	// 			oldRemark = $(this).siblings(".positionRemark").text();
+	// 			console.log(oldName,oldRemark)
+	// 		$('#addPosModal').on('show.bs.modal, hide.bs.modal', function () {
+	// 			//设置模态框原始数据
+	// 			$("#addPositionName").attr("value", oldName);
+	// 			$("#addRemark").attr("value", oldRemark);
+	// 		});
+			
+	// 		//点击确定，修改数据
+	// 		$("#addPosModal .btn-yes").on("click", function(){
+	// 			//获取用户输入的更新值
+	// 			const newInfo = $(".add-position-form").serialize();
+	// 			//判断newInfo是否为空
+	// 			if(newInfo.split("&")[0].split("=")[1]==="" || newInfo.split("&")[1].split("=")[1]===""){
+	// 				alert("分类名称或备注不能为空！")
+	// 			}else{
+	// 				//将oldname值与newInfo值伪造成一个search数据
+	// 				const data = "id="+id+"&"+newInfo;
+	// 				console.log(data)
+	// 				$.post("/positions/update", data, (res)=>{
+	// 					if(res.res_code === 1){
+	// 						location.reload();
+	// 					}
+	// 				},"json");
+	// 			}	
+	// 		});
+	// 	});
+	// }
 });
 new Position();

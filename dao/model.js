@@ -8,12 +8,7 @@ const Position = mongoose.model("position", {
 	name: String,
 	remark: String,
 });
-const Inbound = mongoose.model("inbound", {
-	food: String,
-	list: String,
-	name: Number,
-	remark: String,
-});
+
 
 //用户表模型
 const User=mongoose.model("user",{
@@ -29,4 +24,4 @@ const Inventory = mongoose.model("inventory",{
 
 });
 
-module.exports = {Position,Inbound,User,Inventory};
+module.exports = {Position,User,Inventory};
