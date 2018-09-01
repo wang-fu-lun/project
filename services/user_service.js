@@ -9,7 +9,7 @@ const UserService={
 	    UserDao
 			.find({email})
 			.then(data=>{
-				
+				console.log(data[0]._id)
 				if(data.length==1){
 				
 				 //获取数据库中所保存的用户加密后的密码

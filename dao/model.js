@@ -18,6 +18,15 @@ const Position = mongoose.model("position", {
 	remark: String,
 });
 
+
+
+
+//库存模型
+const Inventory = mongoose.model("inventory",{
+
+});
+
+
 //库存模型
 const Repertory=mongoose.model("repertory", {
 	name: String,
@@ -26,3 +35,6 @@ const Repertory=mongoose.model("repertory", {
 	datatime:String,
 });
 module.exports = {User,Position,Repertory};
+
+module.exports = {Position,Repertory,User,Inventory};
+

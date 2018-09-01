@@ -42,11 +42,11 @@ Header.template = `<div class="dvheader">
 			<a href="/html/type.html" target="right">
 				<li>分类管理</li>
 			</a>
-			<a href="/html/inventory.html" target="right">
-				<li>库存管理</li>
-			</a>
 			<a href="/html/inbound.html" target="right">
 				<li>入库管理</li>
+			</a>
+			<a href="/html/inventory.html" target="right">
+				<li>库存管理</li>
 			</a>
 			<a href="/html/warning.html" target="right">
 				<li>预警信息设置</li>
@@ -74,7 +74,7 @@ $.extend(Header.prototype, {
 	createDom() {
 		$(Header.template).appendTo("header");
 	},
-	
+
 	// 页面加载处理
 	load() {
 		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
@@ -87,16 +87,22 @@ $.extend(Header.prototype, {
 		}
 	},
 
+
 	// 注册事件监听
 	addListener() {
 		//点击链接
 		$(".headerultools").on("click",this.showlogoout)
+
 		// 点击退出
 		$(".headerlitools_ulinfo").on("click", this.logoutHandler);
 		
 	},
 	
 	//显示退出
+
+	
+	//显示注销
+
 	showlogoout(){
 		const status=$(".headerlitools_ulinfo").css("display");
 		//console.log(status);
@@ -106,6 +112,7 @@ $.extend(Header.prototype, {
 			$(".headerlitools_ulinfo").css("display","none");
 		}
 	},
+
 	
 	
 	
@@ -117,7 +124,8 @@ $.extend(Header.prototype, {
 				window.location.href = "/index.html";
 			}
 		})
-	}
+	},
+
 });
 
 // 创建头部对象实例

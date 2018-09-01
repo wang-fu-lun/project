@@ -64,6 +64,7 @@ $.extend(LoginMod.prototype,{
 				$(".login_suc").removeClass("hide");
 				$(".not_login").hide();
 				sessionStorage.loginUser=JSON.stringify(resData.res_body);
+				console.log(JSON.stringify(resData.res_body));
 			}else{
 				$(".login-err").removeClass("hide");
 				$(".login-err1").addClass("hide");

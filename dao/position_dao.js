@@ -5,25 +5,29 @@ const PositionDao = {
 	save(positionInfo) {
 		return new Position(positionInfo).save();
 	},
+	//查询分类名相同的总条数
+	// nameCount(name){
+	// 	return Position.find(name).count();
+	// },
 	// 总记录条数
 	count() {
 		return Position.find().count();
 	},
 	// 按页查找职位信息
 	findByPage(page) {
-		// 假定每页显示20条数据
-		const pageSize = 20;
+		// 假定每页显示1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               0条数据
+		const pageSize = 10;
 		// 查询
 		return Position.find().skip((page-1)*pageSize).limit(pageSize);
 	},
-	update() {
-
+	updateOne(oldInfo, newInfo) {
+		return Position.updateOne(oldInfo, {$set:newInfo});
 	},
 	find() {
 
 	},
-	delete() {
-		
+	delete(del) {
+		return new Position(del).remove();
 	}
 }
 
