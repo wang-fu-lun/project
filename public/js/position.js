@@ -28,10 +28,6 @@ $.extend(Position.prototype, {
 		$(".am-btn-success").on("click", this.addPositionHandler);
 		// 翻页
 		$(".pagination").on("click", "li", this.loadByPage);
-
-		$(".am-btn-success .delete").on("click", this.deletePositionHandler);
-		
-		
 	},
 	// 页面加载
 	load() {
@@ -79,46 +75,37 @@ $.extend(Position.prototype, {
 	updatePositionHandler(){
 		$(".edit").on("click",function(){
 			//获取旧数据
-			const id = $(this).parent().data('id');
-			let newInfo = "";
+			const id = $(this).parent().data('id'),
+				oldName = $(this).siblings(".positionName").text(),
+				oldRemark = $(this).siblings(".positionRemark").text();
+			//设置模态框原始数据
+			$("#addPositionName").attr("value", oldName);
+			$("#addRemark").attr("value", oldRemark);
+			//点击取消，将数据修改为原数据
+			$("#addPosModal .btn-cancel").on("click",function(){
+				console.log($(this).parent().prev().find(".addPositionName"))
+				$(this).parent().prev().find("#addPositionName").val(oldName);
+				$(this).parent().prev().find("#addRemark").val(oldRemark);
+			});
+			//点击确定，修改数据
 			$("#addPosModal .btn-yes").on("click", function(){
 				//获取用户输入的更新值
-				newInfo = $(".add-position-form").serialize();
-				//将oldname值与newInfo值伪造成一个search数据
-				const data = "id="+id+"&"+newInfo;
-				console.log(data)
-				$.post("/positions/update", data, (data)=>{
-					if(data.res_code === 1){
-						location.reload();
-					}
-				},"json");
+				const newInfo = $(".add-position-form").serialize();
+				//判断newInfo是否为空
+				if(newInfo.split("&")[0].split("=")[1]==="" || newInfo.split("&")[1].split("=")[1]===""){
+					alert("分类名称或备注不能为空！")
+				}else{
+					//将oldname值与newInfo值伪造成一个search数据
+					const data = "id="+id+"&"+newInfo;
+					console.log(data)
+					$.post("/positions/update", data, (data)=>{
+						if(data.res_code === 1){
+							location.reload();
+						}
+					},"json");
+				}	
 			});
 		});
-	},
-    //删除数据
-    deletePositionHandler() {
-		
-		$.jq_Confirm({
-			message: "您确定要删除吗?",
-			btnOkClick: function() {
-				$.ajax({
-					type: "post",
-					url: "/positions/add",
-					data: { id: id },
-					success: function(data) {
-						if(data > 0) {
-							$.jq_Alert({
-								message: "删除成功",
-								btnOkClick: function() {
-									page1();
-								}
-							});
-						}
-					}
-				});
-			}
-		});
-		
-	},
+	}
 });
 new Position();
