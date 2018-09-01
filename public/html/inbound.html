@@ -73,7 +73,7 @@
 										<div class="am-u-sm-12 am-u-md-4 am-u-md-push-8"></div>
 										<div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4" style="padding-top: 30px;">
 
-											<form class="am-form am-form-horizontal" action="">
+										
 
 											<form class="am-form am-form-horizontal">
 
@@ -87,16 +87,6 @@
 															<option value="">蔬菜类</option>
 															<option value="">瓜果类</option>
 														</select> <small>分类</small>
-
-															<!-- <input type="text" id="name" required placeholder="商品" name="list">
-															<small>商品</small> -->
-														<!-- <select id="list" required name="list">
-															<option value="">请选择商品</option>
-															<option value="商品一">商品一</option>
-															<option value="商品二">商品二</option>
-															<option value="商品三">商品三</option>
-														</select><small>商品</small> -->
-
 													</div>
 												</div>
 												<div class="am-form-group">
@@ -142,7 +132,7 @@
 				</div>
 			</div>
 			<!-- 编辑的模态框 -->
-			<!-- <div class="modal fade" id="addPosModal" tabindex="-1">
+			<div class="modal fade" id="editModal" tabindex="-1">
 					<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -150,40 +140,61 @@
 						<h4 class="modal-title" id="myModalLabel">编辑分类</h4>
 						</div>
 						<div class="modal-body">
-						<form class="add-position-form">
-							<div class="form-group">
-								<label for="addPositionName">商品名称</label>
-								<input type="text" class="form-control" name="name" id="addPositionName" placeholder="商品名称">
-							</div>
-							<div class="form-group">
-								<label for="addPositionName">商品分类</label>
-								<select class="form-control" required name="food">
-									<option value="">请选择分类</option>
-									<option value="肉类">肉类</option>
-									<option value="生鲜类">生鲜类</option>
-									<option value="蔬菜类">蔬菜类</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="addPositionName">入库数量</label>
-								<input type="text" class="form-control" name="name" id="addPositionName" placeholder="入库数量">
-							</div>
-							<div class="form-group">
-								<label for="addTip">备注</label>
-								<input type="text" class="form-control" name="tip" id="addTip" placeholder="备注">
-							</div>
-						</form>
+						
+																	<form class="am-form am-form-horizontal">
+						
+																		<div class="am-form-group">
+																			<label for="user-email" class="am-u-sm-3 am-form-label">分类</label>
+																			<div class="am-u-sm-9">
+						
+																				<select name="assortId" id="modassortId" required >
+																					<option value="">请选择分类</option>
+																					<option value="肉类">肉类</option>
+																					<option value="蔬菜类">蔬菜类</option>
+																					<option value="瓜果类">瓜果类</option>
+																				</select> <small>分类</small>
+																			</div>
+																		</div>
+																		<div class="am-form-group">
+																			<label for="user-email" class="am-u-sm-3 am-form-label">商品名称</label>
+																			<div class="am-u-sm-9">
+						
+																				<select name="nameId" id="modnameId" required>
+																					<option value="">请选择商品</option>
+																					<option value="猪肉">猪肉</option>
+																					<option value="苹果">苹果</option>
+																					<option value="南瓜">南瓜</option>
+																				</select><small>商品</small>
+						
+																			</div>
+																		</div>
+																		<div class="am-form-group">
+																			<label for="name" class="am-u-sm-3 am-form-label">数量</label>
+																			<div class="am-u-sm-9">
+																				<input type="text" id="modamount" required placeholder="数量" name="amount">
+																				<small>数量</small>
+																			</div>
+																		</div>
+																		<div class="am-form-group">
+																			<label for="user-intro" class="am-u-sm-3 am-form-label">入库日期</label>
+																			<div class="am-u-sm-9">
+																			<input type="text" id="moddatatime" required placeholder="入库日期" name="datatime" style="color:#E5E5E5;">
+																				<small>日期</small>
+																			</div>
+																		</div>
+																		
+																	</form>
 						</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary btn-add-pos" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-primary btn-add-updata" data-dismiss="modal">确定</button>
 						</div>
 					</div>
 					</div>
-				</div> -->
+				</div>
 				
-				<!-- 编辑的模态框-->
-				<div class="modal fade" id="addPosModal1" tabindex="-1">
+				<!-- 删除的模态框-->
+				<div class="modal fade" id="delModal" tabindex="-1">
 					<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -191,7 +202,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary btn-add-pos" data-dismiss="modal">确定</button>
+							<button type="button" class="btn btn-primary btn-add-del" data-dismiss="modal">确定</button>
 						</div>
 					</div>
 					</div>

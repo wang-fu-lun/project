@@ -16,14 +16,14 @@ const RepertoryDao = {
 		// 查询
 		return Repertory.find().skip((page-1)*pageSize).limit(pageSize);
 	},
-	update() {
-
+	updateOne(oldInfo, newInfo) {
+		return Repertory.updateOne(oldInfo, {$set:newInfo});
 	},
 	find() {
 
 	},
-	delete() {
-		
+	delete(del) {
+		return new Repertory(del).remove();
 	}
 }
 

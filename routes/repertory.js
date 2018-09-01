@@ -10,4 +10,9 @@ router.post("/add", RepertoryService.add);
 // http://localhost:3000/positions/list
 router.get("/list", RepertoryService.listByPage);
 
+
+router.get("/del", RepertoryService.del);
+
+router.post("/update",RepertoryService.update);
+
 module.exports = router;
