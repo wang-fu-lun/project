@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 .tabs {
     border: 1px solid #ddd;
@@ -45,6 +45,7 @@
     .tabs > .bd > div {
         padding: 15px;
         zoom: 1;
+		
     }
 
     .tabs > .bd > div {
