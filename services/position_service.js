@@ -1,8 +1,8 @@
 const PositionDao = require("../dao/position_dao.js");
-const mongoose = require("mongoose");
+const mongoose=require("mongoose");
 
 const PositionService = {
-	// 添加职位
+	// 添加数据
 	add(req, res, next) {
 		// 从请求主体中解构文本数据
 		const {name,remark} = req.body;
@@ -16,6 +16,23 @@ const PositionService = {
 				res.json({res_code:-1, res_error:err, res_body: {}})
 			});
 	},
+	// 删除数据
+	del(req, res, next) {
+		// 从请求主体中解构文本数据
+		let {id} = req.query;
+		id=mongoose.Types.ObjectId(id);
+		
+		// 保存到数据库
+		PositionDao
+			.delete({_id:id})
+			.then(idData=>{
+				res.json({res_code:1, res_error:"", res_body: {id:idData}})
+			})
+			.catch(err=>{
+				res.json({res_code:-1, res_error:err, res_body:""})
+			});
+	},
+	// 分页查询数据
 	//编辑--update
 	update(req, res, next){
 		//从请求主体重结构文本数据
@@ -45,7 +62,7 @@ const PositionService = {
 					.findByPage(page)
 					.then(pageData=>{
 						// 总页数
-						const totalPages = Math.ceil(data / 15);
+						const totalPages = Math.ceil(data / 10);
 						res.json({res_code:1, res_error:"", res_body: {data: pageData, count: data, totalPages}});
 					}).catch(err=>{
 						res.json({res_code:-1, res_error:err, res_body: {}});

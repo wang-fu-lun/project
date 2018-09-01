@@ -39,11 +39,11 @@ Header.template = `<div class="dvheader">
 			<a href="/html/type.html" target="right">
 				<li>分类管理</li>
 			</a>
-			<a href="/html/inventory.html" target="right">
-				<li>库存管理</li>
-			</a>
 			<a href="/html/inbound.html" target="right">
 				<li>入库管理</li>
+			</a>
+			<a href="/html/inventory.html" target="right">
+				<li>库存管理</li>
 			</a>
 			<a href="/html/warning.html" target="right">
 				<li>预警信息设置</li>
@@ -71,46 +71,15 @@ $.extend(Header.prototype, {
 	createDom() {
 		$(Header.template).appendTo("header");
 	},
-	// 点击显示注销
-	
-	
-	// 页面加载处理
-// 	load() {
-// 		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
-// 		let user = sessionStorage.loginUser;
-// 		if (user) {
-// 			user = JSON.parse(user);
-// 			$(".login-success")
-// 				.removeClass("hide")
-// 				.find("a:first").text(`你好：${user.username}`);
-// 			$(".not-login").remove();
-// 		}
-// 	},
 	// 注册事件监听
 	addListener() {
 		//点击链接
 		$(".headerultools").on("click",this.showlogoout)
-		// 点击注销链接
-		//$(".link-logout").on("click", this.logoutHandler);
-		
 	},
-	
 	//显示注销
 	showlogoout(){
 		$(".headerlitools_ulinfo").css("display","block");
 	},
-	
-	
-	
-	// 注销
-// 	logoutHandler() {
-// 		$.getJSON("/users/logout", (data)=>{
-// 			if (data.res_body.status) {
-// 				sessionStorage.removeItem("loginUser");
-// 				window.location.href = "/index.html";
-// 			}
-// 		})
-// 	}
 });
 
 // 创建头部对象实例

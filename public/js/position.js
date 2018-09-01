@@ -8,26 +8,41 @@ $(function() {
 
 Position.listInfoTemplate = `
 	<% for (var i = 0; i < positions.length; i++) { %> 
-		<tr data-id = "<%= positions[i]._id %>">
+		<tr data-id="<%= positions[i]._id %>">
 			<td><%= i+1 %></td>
 			<td class="positionName"><%= positions[i].name %></td>
 			<td class = "positionRemark"><%= positions[i].remark %></td>
 			<td class="edit"><button data-toggle="modal" data-target="#addPosModal"><i class="icon-edit bigger-120"></i>编辑</button></td>
-			<td class="delete"><button><i class="icon-trash bigger-120"></i>删除</button></td>
+			<td class="delete"><button data-toggle="modal"  data-target="#addPosModal1"><i class="icon-trash bigger-120"></i>删除</button></td>
 		</tr>
 	<% } %>`;
 
 Position.paginationTemplate = `
-<% for (var i = 1; i <= totalPages; i++)  {%>
-	<li class="<%= currentPage == i ? 'active' : '' %>"><a style="border-radius:4px;margin-left:3px;" href="#"><%= i %></a></li>
-<% } %>`;
+	<% for (var i = 1; i <= totalPages; i++)  {%>
+		<li class="<%= currentPage == i ? 'active' : '' %>"><a style="border-radius:4px;margin-left:3px;" href="#"><%= i %></a></li>
+	<% } %>`;
 
 $.extend(Position.prototype, {
 	// 注册事件监听 
 	addListener() {
-		$(".am-btn-success").on("click", this.addPositionHandler);
+		$(".am-btn-success").on("click", function(){
+			const data=$(".am-form-horizontal").serialize();
+			$.post("/positions/add",data,(data)=>{
+				
+			},"json");
+		});
 		// 翻页
 		$(".pagination").on("click", "li", this.loadByPage);
+		 //删除数据
+		$("tbody").delegate(".delete","click",function(){
+			const _id=$(this).parent().data("id");
+			$(this).parents("tr").remove();
+			$.getJSON("/positions/del?id="+_id,function(data){
+				if(data.res_code === 1){
+					location.reload();
+				}
+			})
+		})
 	},
 	// 页面加载
 	load() {
@@ -63,14 +78,6 @@ $.extend(Position.prototype, {
 			$(".pagination").html(pagination);
 		// }).done(function(){this.getOldInfo.call(this);}.bind(this));
 		}).done(this.updatePositionHandler);
-
-
-	},
-	// 添加数据
-	addPositionHandler() {
-		const data=$(".am-form-horizontal").serialize();
-		$.post("/positions/add",data,(data)=>{
-		},"json");
 	},
 	updatePositionHandler(){
 		$(".edit").on("click",function(){
