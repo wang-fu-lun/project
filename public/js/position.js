@@ -8,10 +8,10 @@ $(function() {
 
 Position.listInfoTemplate = `
 	<% for (var i = 0; i < positions.length; i++) { %> 
-		<tr>
+		<tr data-id = "<%= positions[i]._id %>">
 			<td><%= i+1 %></td>
-			<td><%= positions[i].name %></td>
-			<td><%= positions[i].remark %></td>
+			<td class="positionName"><%= positions[i].name %></td>
+			<td class = "positionRemark"><%= positions[i].remark %></td>
 			<td class="edit"><button data-toggle="modal" data-target="#addPosModal"><i class="icon-edit bigger-120"></i>编辑</button></td>
 			<td class="delete"><button><i class="icon-trash bigger-120"></i>删除</button></td>
 		</tr>
@@ -30,6 +30,8 @@ $.extend(Position.prototype, {
 		$(".pagination").on("click", "li", this.loadByPage);
 
 		$(".am-btn-success .delete").on("click", this.deletePositionHandler);
+		
+		
 	},
 	// 页面加载
 	load() {
@@ -63,15 +65,36 @@ $.extend(Position.prototype, {
 			// 显示页码数据
 			const pagination = ejs.render(Position.paginationTemplate, {totalPages: data.res_body.totalPages, currentPage : page})
 			$(".pagination").html(pagination);
-		});
+		// }).done(function(){this.getOldInfo.call(this);}.bind(this));
+		}).done(this.updatePositionHandler);
+
+
 	},
 	// 添加数据
 	addPositionHandler() {
 		const data=$(".am-form-horizontal").serialize();
 		$.post("/positions/add",data,(data)=>{
-			
 		},"json");
-    },
+	},
+	updatePositionHandler(){
+		$(".edit").on("click",function(){
+			//获取旧数据
+			const id = $(this).parent().data('id');
+			let newInfo = "";
+			$("#addPosModal .btn-yes").on("click", function(){
+				//获取用户输入的更新值
+				newInfo = $(".add-position-form").serialize();
+				//将oldname值与newInfo值伪造成一个search数据
+				const data = "id="+id+"&"+newInfo;
+				console.log(data)
+				$.post("/positions/update", data, (data)=>{
+					if(data.res_code === 1){
+						location.reload();
+					}
+				},"json");
+			});
+		});
+	},
     //删除数据
     deletePositionHandler() {
 		

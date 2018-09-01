@@ -6,6 +6,9 @@ const PositionService = require("../services/position_service.js");
 // http://localhost:3000/positions/add
 router.post("/add", PositionService.add);
 
+/* 编辑 */
+router.post("/update",PositionService.update);
+
 /* 按页查询 */
 // http://localhost:3000/positions/list
 router.get("/list", PositionService.listByPage);

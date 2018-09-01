@@ -9,10 +9,7 @@ var session=require('express-session');
 // 路由中间件
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
-
 var captchaRouter = require('./routes/captcha');
-
 const positionsRouter = require('./routes/positions.js');
 
 
