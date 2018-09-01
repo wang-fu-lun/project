@@ -5,6 +5,10 @@ const PositionDao = {
 	save(positionInfo) {
 		return new Position(positionInfo).save();
 	},
+	//查询分类名相同的总条数
+	// nameCount(name){
+	// 	return Position.find(name).count();
+	// },
 	// 总记录条数
 	count() {
 		return Position.find().count();
@@ -16,9 +20,9 @@ const PositionDao = {
 		// 查询
 		return Position.find().skip((page-1)*pageSize).limit(pageSize);
 	},
-	update() {
-
-	}, 
+	updateOne(oldInfo, newInfo) {
+		return Position.updateOne(oldInfo, {$set:newInfo});
+	},
 	find() {
 
 	},

@@ -10,7 +10,7 @@ const UserService={
 	    UserDao
 			.find({email})
 			.then(data=>{
-				
+				console.log(data[0]._id)
 				if(data.length==1){
 				
 				 //比较密码是否正确
