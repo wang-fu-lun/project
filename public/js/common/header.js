@@ -39,11 +39,11 @@ Header.template = `<div class="dvheader">
 			<a href="/html/type.html" target="right">
 				<li>分类管理</li>
 			</a>
-			<a href="/html/inventory.html" target="right">
-				<li>库存管理</li>
-			</a>
 			<a href="/html/inbound.html" target="right">
 				<li>入库管理</li>
+			</a>
+			<a href="/html/inventory.html" target="right">
+				<li>库存管理</li>
 			</a>
 			<a href="/html/warning.html" target="right">
 				<li>预警信息设置</li>
