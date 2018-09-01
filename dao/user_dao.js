@@ -1,4 +1,4 @@
-const {User}=require("./modal.js");
+const {User}=require("./model.js");
 const UserDao={
 	save(userinfo){
 		const user=new User(userinfo);
@@ -7,7 +7,9 @@ const UserDao={
 	find(userinfo){
 		return User.find(userinfo);
 	},
-	update(){},
+	update(updateData,data){
+		return User.update(updateData,data).exec();
+	},
 	delete(){},
 };
 module.exports=UserDao;

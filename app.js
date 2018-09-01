@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 var session=require('express-session');
+//引入multer中间件，实现文件上传
 
 // 路由中间件
 const indexRouter = require('./routes/index');
@@ -14,6 +15,8 @@ const usersRouter = require('./routes/users');
 var captchaRouter = require('./routes/captcha');
 
 const positionsRouter = require('./routes/positions.js');
+
+const repertoryRouter = require('./routes/repertory.js');
 
 
 // 创建 Express 应用实例
@@ -53,6 +56,8 @@ app.use('/users', usersRouter);
 app.use('/captcha', captchaRouter);
 
 app.use('/positions', positionsRouter); // 访问type目录下资源
+
+app.use('/repertory', repertoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

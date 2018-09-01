@@ -5,30 +5,33 @@
 function Header() {
 	this.createDom();
 	this.addListener();
-	//this.load();
+	this.load();
 }
 
 // 头部导航模板字符串
 Header.template = `<div class="dvheader">
 <div class="dvheadertools">
 	<span class="headerspantitle">进销存管理系统</span>
-	<ul class="headerultools">
 	
+	<ul class="headerultools">
+	  
+		<li class="img"><img src="" style="height:45px;border-radius:30%"></li>
+		
 		<li class="headerlitools_info headerlitools" style="background-color: #075597">
-		欢迎您，<span>xxx</span>
+		欢迎您:<span style="font-size:12px">xxx</span>	
+		<i style="margin-left: 8px;" class="icon-caret-down"></i>	
 		
-		<i style="margin-left: 8px;" class="icon-caret-down"></i>
-		
-			<ul class="headerlitools_ulinfo">
-				<li style="border-top: 1px solid #E4ECF3;">
-					<i class="icon-off" style="margin:0 10px;"></i>
-					<a style="color: black; text-decoration: none;">退出</a>
-				</li>
-			</ul>
-			
+		<ul class="headerlitools_ulinfo">
+			<li style="border-top: 1px solid #E4ECF3;">
+				<i class="icon-off" style="margin:0 10px;"></i>
+				<a style="color: black; text-decoration: none;">退出</a>
+			</li>
+		</ul>
 		</li>
 		
+		
 	</ul>
+	
 </div>
 </div>
 <div class="dvcontent">
@@ -71,46 +74,50 @@ $.extend(Header.prototype, {
 	createDom() {
 		$(Header.template).appendTo("header");
 	},
-	// 点击显示注销
-	
 	
 	// 页面加载处理
-// 	load() {
-// 		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
-// 		let user = sessionStorage.loginUser;
-// 		if (user) {
-// 			user = JSON.parse(user);
-// 			$(".login-success")
-// 				.removeClass("hide")
-// 				.find("a:first").text(`你好：${user.username}`);
-// 			$(".not-login").remove();
-// 		}
-// 	},
+	load() {
+		// 页面加载时要判断是否有用户登录过，有则显示用户信息及注销链接
+		let user = sessionStorage.loginUser;
+		console.log(user);
+		if (user) {
+			user = JSON.parse(user);
+			$(".headerlitools_info span").text(`${user.email}`);
+			$(".img img").attr("src",`../images/upload/${user.logo}`);
+		}
+	},
+
 	// 注册事件监听
 	addListener() {
 		//点击链接
 		$(".headerultools").on("click",this.showlogoout)
-		// 点击注销链接
-		//$(".link-logout").on("click", this.logoutHandler);
+		// 点击退出
+		$(".headerlitools_ulinfo").on("click", this.logoutHandler);
 		
 	},
 	
-	//显示注销
+	//显示退出
 	showlogoout(){
-		$(".headerlitools_ulinfo").css("display","block");
+		const status=$(".headerlitools_ulinfo").css("display");
+		//console.log(status);
+		if(status=="none"){
+			 $(".headerlitools_ulinfo").css("display","block");
+		}else if(status=="block"){
+			$(".headerlitools_ulinfo").css("display","none");
+		}
 	},
 	
 	
 	
-	// 注销
-// 	logoutHandler() {
-// 		$.getJSON("/users/logout", (data)=>{
-// 			if (data.res_body.status) {
-// 				sessionStorage.removeItem("loginUser");
-// 				window.location.href = "/index.html";
-// 			}
-// 		})
-// 	}
+	// 退出
+	logoutHandler() {
+		$.getJSON("/users/logout", (data)=>{
+			if (data.res_body.status) {
+				sessionStorage.removeItem("loginUser");
+				window.location.href = "/index.html";
+			}
+		})
+	}
 });
 
 // 创建头部对象实例
