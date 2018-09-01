@@ -95,6 +95,26 @@ const UserService={
 					res.json({res_code:-2, res_error:"原密码错误"});
 				}
 	},
-	
+	listByPage(req, res, next) {
+		// 获取待查询的页码
+		let {page} = req.query;
+		page = page || 1;
+		// 调用数据库查询方法
+		UserDao
+			.count()
+			.then((data)=>{
+				UserDao
+					.findByPage(page)
+					.then(pageData=>{
+						// 总页数
+						const totalPages = Math.ceil(data / 10);
+						res.json({res_code:1, res_error:"", res_body: {data: pageData, count: data, totalPages}});
+					}).catch(err=>{
+						res.json({res_code:-1, res_error:err, res_body: {}});
+					});
+			}).catch(err=>{
+				res.json({res_code:-1, res_error:err, res_body: {}});
+			});
+	},
 }
 module.exports=UserService;
