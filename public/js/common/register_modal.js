@@ -22,6 +22,12 @@ RegeisterMod.template=`<div class="modal-dialog">
 							<label for="reg_username">用户名</label>
 							<input type="text" name="email" class="form-control" id="log_username" placeholder="请输入用户名">
 						</div>
+						
+						<div class="form-group">
+							<label for="reg_img">头像</label>
+							<input type="file" name="logo" class="form-control" id="log_img" placeholder="">
+						</div>
+						
 						<div class="form-group">
 							<label for="reg_password">密码</label>
 							<input type="password" name="password" class="form-control" id="reg_password" placeholder="请输入密码">
@@ -75,21 +81,47 @@ $.extend(RegeisterMod.prototype,{
 		}
 		console.log(pass,passAga);
 		if(this.valid){
-		$.post("/users/regeister",data,(resData)=>{
-			console.log(resData);	
-				if(resData.res_code==-1){
-					$(".reg-err1").removeClass("hide");
-					$(".reg-err2").addClass("hide");
-					$(".reg-err3").addClass("hide");
-					$(".reg-suc").addClass("hide");
-				}else{
-						$(".reg-err1").addClass("hide");
+// 		$.post("/users/regeister",data,(resData)=>{
+// 			console.log(resData);	
+// 				if(resData.res_code==-1){
+// 					$(".reg-err1").removeClass("hide");
+// 					$(".reg-err2").addClass("hide");
+// 					$(".reg-err3").addClass("hide");
+// 					$(".reg-suc").addClass("hide");
+// 				}else{
+// 						$(".reg-err1").addClass("hide");
+// 						$(".reg-err2").addClass("hide");
+// 						$(".reg-err3").addClass("hide");
+// 						$(".reg-suc").removeClass("hide");
+// 				}
+// 				
+// 		},"json");
+     //创建formdata对象：包装待上传表单*(dom)的数据
+		  const formData=new FormData($(".regeister_form")[0]);
+			//使用$.ajax实现上传
+			$.ajax({
+				type:"post",
+				url:"/users/regeister",
+				data:formData,
+				processData:false,
+				contentType:false,
+				success:function(resData){
+					console.log(resData);
+					if(resData.res_code==-1){
+						$(".reg-err1").removeClass("hide");
 						$(".reg-err2").addClass("hide");
 						$(".reg-err3").addClass("hide");
-						$(".reg-suc").removeClass("hide");
-				}
+						$(".reg-suc").addClass("hide");
+					}else{
+							$(".reg-err1").addClass("hide");
+							$(".reg-err2").addClass("hide");
+							$(".reg-err3").addClass("hide");
+							$(".reg-suc").removeClass("hide");
+					}
+									
+				},
 				
-		},"json");
+			});
 		}
 	},
 	//生成验证码图片
